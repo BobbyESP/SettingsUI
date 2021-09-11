@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>SettingsUI</RootNamespace>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Controls\SettingsGroup\SettingsGroup.xaml" />
+    <None Remove="Controls\SettingsPageControl\SettingsPageControl.xaml" />
+    <None Remove="Controls\Setting\Setting.xaml" />
+    <None Remove="Styles\Button.xaml" />
+    <None Remove="Styles\Common.xaml" />
+    <None Remove="Styles\TextBlock.xaml" />
+    <None Remove="Themes\Colors.xaml" />
+    <None Remove="Themes\Generic.xaml" />
+    <None Remove="Themes\SettingsExpanderStyles.xaml" />
+    <None Remove="Themes\SettingsUI.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.3" />
+	  <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.3" />
+	  <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.3" />
+      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.0.3" />
+	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
+	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\SettingsUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\SettingsExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\SettingsPageControl\SettingsPageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\SettingsGroup\SettingsGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\Setting\Setting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

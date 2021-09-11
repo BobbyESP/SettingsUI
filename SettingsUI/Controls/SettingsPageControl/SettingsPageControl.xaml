@@ -1,0 +1,132 @@
+﻿<UserControl
+    x:Class="SettingsUI.Controls.SettingsPageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:converters="using:CommunityToolkit.WinUI.UI.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SettingsUI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:DoubleToVisibilityConverter
+            x:Name="doubleToVisibilityConverter"
+            FalseValue="Collapsed"
+            GreaterThan="0"
+            TrueValue="Visible"/>
+        <Style BasedOn="{StaticResource TextBlockButtonStyle}" TargetType="HyperlinkButton">
+            <Style.Setters>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Margin" Value="0,0,16,0"/>
+            </Style.Setters>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Padding="20,0,0,0" RowSpacing="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="Header"
+            Margin="0,44,0,0"
+            VerticalAlignment="Stretch"
+            Style="{StaticResource TitleTextBlockStyle}"
+            Text="{x:Bind ModuleTitle}"/>
+
+        <ScrollViewer Grid.Row="1">
+            <Grid Padding="0,0,20,48" RowSpacing="24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MaxWidth="1048"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!--  Top panel  -->
+                <Grid ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border VerticalAlignment="Top" CornerRadius="4">
+                        <Image AutomationProperties.AccessibilityView="Raw">
+                            <Image.Source>
+                                <BitmapImage UriSource="{x:Bind ModuleImageSource}"/>
+                            </Image.Source>
+                        </Image>
+                    </Border>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock
+                            x:Name="AboutDescription"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            Text="{x:Bind ModuleDescription}"
+                            TextWrapping="Wrap"/>
+
+                        <ItemsControl Margin="0,8,0,0" ItemsSource="{x:Bind PrimaryLinks}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="local:PageLink">
+                                    <HyperlinkButton NavigateUri="{x:Bind Link}">
+                                        <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap"/>
+                                    </HyperlinkButton>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <controls:WrapPanel HorizontalSpacing="8" Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </StackPanel>
+
+                </Grid>
+
+                <!--  Content panel  -->
+                <ContentPresenter
+                    x:Name="ModuleContentPresenter"
+                    Grid.Row="1"
+                    MaxWidth="1048"
+                    Margin="0,12,0,0"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    Content="{x:Bind ModuleContent}"/>
+
+                <!--  Bottom panel  -->
+                <StackPanel
+                    x:Name="SecondaryLinksPanel"
+                    Grid.Row="2"
+                    Orientation="Vertical"
+                    Visibility="{x:Bind SecondaryLinks.Count, Converter={StaticResource doubleToVisibilityConverter}}">
+                    <TextBlock
+                        Margin="2,8,0,0"
+                        AutomationProperties.HeadingLevel="Level2"
+                        Style="{ThemeResource BodyStrongTextBlockStyle}"
+                        Text="{x:Bind SecondaryLinksHeader}"/>
+
+                    <ItemsControl
+                        x:Name="SecondaryLinksItemControl"
+                        Margin="2,0,0,0"
+                        ItemsSource="{x:Bind SecondaryLinks}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="local:PageLink">
+                                <HyperlinkButton NavigateUri="{x:Bind Link}">
+                                    <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap"/>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <controls:WrapPanel HorizontalSpacing="8" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

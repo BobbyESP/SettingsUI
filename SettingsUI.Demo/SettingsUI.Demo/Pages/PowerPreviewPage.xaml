@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="SettingsUI.Demo.Pages.PowerPreviewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SettingsUI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SettingsUI.Demo.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <controls:SettingsPageControl
+        ModuleDescription="These settings allow you to manage your Windows File Explorer custom preview handlers."
+        ModuleImageSource="ms-appx:///Assets/Modules/PowerPreview.png"
+        ModuleTitle="File Explorer">
+        <controls:SettingsPageControl.ModuleContent>
+            <StackPanel Orientation="Vertical">
+                <InfoBar
+                    Title="You need to run as administrator to modify these settings."
+                    IsClosable="False"
+                    IsOpen="True"
+                    Severity="Warning"/>
+
+                <InfoBar
+                    Title="The settings on this page affect all users on the system"
+                    IsClosable="False"
+                    IsOpen="True"
+                    Severity="Informational"/>
+
+                <controls:SettingsGroup Header="Preview Pane">
+                    <controls:Setting Header="Enable SVG (.svg) preview" Icon="&#xE91B;">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch/>
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+
+                    <controls:Setting Header="Enable Markdown (.md) preview" Icon="&#xE943;">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch/>
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+
+                    <controls:Setting Header="Enable PDF (.pdf) preview" Icon="&#xEA90;">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch/>
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+                </controls:SettingsGroup>
+
+                <controls:SettingsGroup Header="Icon Preview">
+                    <InfoBar
+                        Title="A reboot may be required for changes to these settings to take effect"
+                        IsClosable="False"
+                        IsOpen="True"
+                        Severity="Informational"/>
+                    <controls:Setting Header="Enable SVG (.svg) thumbnails" Icon="&#xE91B;">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch/>
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+                </controls:SettingsGroup>
+            </StackPanel>
+        </controls:SettingsPageControl.ModuleContent>
+
+        <controls:SettingsPageControl.PrimaryLinks>
+            <controls:PageLink Link="https://aka.ms/PowerToysOverview_FileExplorerAddOns" Text="Learn more about File Explorer add-ons"/>
+        </controls:SettingsPageControl.PrimaryLinks>
+    </controls:SettingsPageControl>
+</Page>

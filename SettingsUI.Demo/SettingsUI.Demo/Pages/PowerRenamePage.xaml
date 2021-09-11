@@ -1,0 +1,90 @@
+﻿<Page
+    x:Class="SettingsUI.Demo.Pages.PowerRenamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SettingsUI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <controls:SettingsPageControl
+        ModuleDescription="A Windows Shell extension for more advanced bulk renaming using search and replace or regular expressions."
+        ModuleImageSource="ms-appx:///Assets/Modules/PowerRename.png"
+        ModuleTitle="PowerRename"
+        SecondaryLinksHeader="Attribution">
+        <controls:SettingsPageControl.ModuleContent>
+            <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+                <controls:Setting Header="Enable PowerRename">
+                    <controls:Setting.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsPowerRename.png"/>
+                    </controls:Setting.Icon>
+                    <controls:Setting.ActionContent>
+                        <ToggleSwitch/>
+                    </controls:Setting.ActionContent>
+                </controls:Setting>
+
+                <controls:SettingsGroup Header="Shell integration">
+                    <controls:Setting Header="Show icon on context menu">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch/>
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+
+                    <controls:Setting Description="Press Shift + right-click on files to open the extended menu" Header="Appear only in extended context menu">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch/>
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+                </controls:SettingsGroup>
+
+                <controls:SettingsGroup Header="Auto-complete">
+                    <controls:SettingExpander IsExpanded="True">
+                        <controls:SettingExpander.Header>
+                            <controls:Setting Header="Enable auto-complete for the search and replace fields" Style="{StaticResource ExpanderHeaderSettingStyle}">
+                                <controls:Setting.ActionContent>
+                                    <ToggleSwitch/>
+                                </controls:Setting.ActionContent>
+                            </controls:Setting>
+                        </controls:SettingExpander.Header>
+                        <controls:SettingExpander.Content>
+                            <StackPanel HorizontalAlignment="Stretch">
+                                <controls:Setting Header="Maximum number of items" Style="{StaticResource ExpanderContentSettingStyle}">
+                                    <controls:Setting.ActionContent>
+                                        <NumberBox
+                                            MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                            HorizontalAlignment="Left"
+                                            Maximum="20"
+                                            Minimum="0"
+                                            SpinButtonPlacementMode="Compact"
+                                            Value="10"/>
+                                    </controls:Setting.ActionContent>
+                                </controls:Setting>
+                            </StackPanel>
+                        </controls:SettingExpander.Content>
+                    </controls:SettingExpander>
+                    <controls:Setting Header="Show recently used strings">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch/>
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+                </controls:SettingsGroup>
+
+                <controls:SettingsGroup Header="Behavior">
+                    <controls:Setting Description="Provides extended features but may use different regex syntax" Header="Use Boost library">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch/>
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+                </controls:SettingsGroup>
+            </StackPanel>
+        </controls:SettingsPageControl.ModuleContent>
+
+        <controls:SettingsPageControl.PrimaryLinks>
+            <controls:PageLink Link="https://aka.ms/PowerToysOverview_PowerRename" Text="Learn more about PowerRename"/>
+        </controls:SettingsPageControl.PrimaryLinks>
+        <controls:SettingsPageControl.SecondaryLinks>
+            <controls:PageLink Link="https://github.com/chrdavis/SmartRename" Text="Chris Davis's SmartRenamer"/>
+        </controls:SettingsPageControl.SecondaryLinks>
+    </controls:SettingsPageControl>
+</Page>

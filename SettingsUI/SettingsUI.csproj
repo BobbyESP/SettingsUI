@@ -5,6 +5,7 @@
     <RootNamespace>SettingsUI</RootNamespace>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Controls\SettingsGroup\SettingsGroup.xaml" />
@@ -20,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.3" />
-	  <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.3" />
-	  <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.3" />
-      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.0.3" />
+	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-experimental1" />
+	  <PackageReference Include="Microsoft.WindowsAppSDK.Foundation" Version="1.0.0-experimental1" />
+	  <PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="1.0.0-experimental1" />
+	  <PackageReference Include="Microsoft.WindowsAppSDK.InteractiveExperiences" Version="1.0.0-experimental1" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
 	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />
   </ItemGroup>

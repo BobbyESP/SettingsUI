@@ -14,5 +14,15 @@ namespace SettingsUI.Demo
             ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
             shellFrame.Navigate(typeof(GeneralPage));
         }
+
+        private void UserControl_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            ViewModel.OnLoaded();
+        }
+
+        private void navigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            ViewModel.OnItemInvoked(args);
+        }
     }
 }

@@ -108,11 +108,6 @@ Easily implement a `NavigationView`
             helpers:NavHelper.NavigateTo="views:FancyZonesPage"
             Content="General"/>
     </NavigationView.MenuItems>
-    <!--<i:Interaction.Behaviors>
-        <ic:EventTriggerBehavior EventName="ItemInvoked">
-            <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}"/>
-        </ic:EventTriggerBehavior>
-    </i:Interaction.Behaviors>-->
     <Frame x:Name="shellFrame"/>
 </NavigationView>
 ```

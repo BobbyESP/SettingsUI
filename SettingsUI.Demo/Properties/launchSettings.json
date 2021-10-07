@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "SettingsUI.Demo": {
+      "commandName": "MsixPackage"
+    }
+  }
+}

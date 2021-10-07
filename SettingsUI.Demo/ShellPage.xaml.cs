@@ -4,11 +4,11 @@ using SettingsUI.ViewModel;
 
 namespace SettingsUI.Demo
 {
-    public sealed partial class Shell : UserControl
+    public sealed partial class ShellPage : Page
     {
         public ShellViewModel ViewModel { get; } = new ShellViewModel();
 
-        public Shell()
+        public ShellPage()
         {
             this.InitializeComponent();
             ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);

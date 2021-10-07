@@ -1,0 +1,98 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>SettingsUI.Demo</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;arm64</Platforms>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Pages\AwakePage.xaml" />
+    <None Remove="ShellPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\ColorPickerPage.xaml.cs" Link="Pages\ColorPickerPage.xaml.cs" />
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\FancyZonesPage.xaml.cs" Link="Pages\FancyZonesPage.xaml.cs" />
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\GeneralPage.xaml.cs" Link="Pages\GeneralPage.xaml.cs" />
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\ImageResizerPage.xaml.cs" Link="Pages\ImageResizerPage.xaml.cs" />
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\KeyboardManagerPage.xaml.cs" Link="Pages\KeyboardManagerPage.xaml.cs" />
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\OobePage.xaml.cs" Link="Pages\OobePage.xaml.cs" />
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\PowerLauncherPage.xaml.cs" Link="Pages\PowerLauncherPage.xaml.cs" />
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\PowerPreviewPage.xaml.cs" Link="Pages\PowerPreviewPage.xaml.cs" />
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\PowerRenamePage.xaml.cs" Link="Pages\PowerRenamePage.xaml.cs" />
+    <Compile Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\ShortcutGuidePage.xaml.cs" Link="Pages\ShortcutGuidePage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-preview2" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.20348.19" />
+    <PackageReference Include="SettingsUI" Version="1.0.0" />
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\ColorPickerPage.xaml" Link="Pages\ColorPickerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\FancyZonesPage.xaml" Link="Pages\FancyZonesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\GeneralPage.xaml" Link="Pages\GeneralPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\ImageResizerPage.xaml" Link="Pages\ImageResizerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\KeyboardManagerPage.xaml" Link="Pages\KeyboardManagerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\OobePage.xaml" Link="Pages\OobePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\PowerLauncherPage.xaml" Link="Pages\PowerLauncherPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\PowerPreviewPage.xaml" Link="Pages\PowerPreviewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\PowerRenamePage.xaml" Link="Pages\PowerRenamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="C:\Users\Mahdi\Desktop\SettingsUI.Demo\SettingsUI.Demo\Pages\ShortcutGuidePage.xaml" Link="Pages\ShortcutGuidePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="ShellPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\AwakePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

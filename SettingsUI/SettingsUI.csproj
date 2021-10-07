@@ -5,11 +5,17 @@
     <RootNamespace>SettingsUI</RootNamespace>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Controls\KeyVisual\KeyVisual.xaml" />
+    <None Remove="Controls\OOBEPageControl\OOBEPageControl.xaml" />
     <None Remove="Controls\SettingsGroup\SettingsGroup.xaml" />
     <None Remove="Controls\SettingsPageControl\SettingsPageControl.xaml" />
     <None Remove="Controls\Setting\Setting.xaml" />
+    <None Remove="Controls\Shortcut\ShortcutDialogContentControl.xaml" />
+    <None Remove="Controls\Shortcut\ShortcutWithTextLabelControl.xaml" />
+    <None Remove="Controls\TextBlockControl\TextBlockControl.xaml" />
     <None Remove="Styles\Button.xaml" />
     <None Remove="Styles\Common.xaml" />
     <None Remove="Styles\TextBlock.xaml" />
@@ -20,12 +26,21 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.3" />
-	  <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.3" />
-	  <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.3" />
-      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.0.3" />
+	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-preview2" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
 	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\Shortcut\ShortcutDialogContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\KeyVisual\KeyVisual.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
@@ -84,6 +99,24 @@
 
   <ItemGroup>
     <Page Update="Controls\Setting\Setting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\TextBlockControl\TextBlockControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\Shortcut\ShortcutWithTextLabelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\OOBEPageControl\OOBEPageControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

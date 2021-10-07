@@ -10,12 +10,14 @@
     <UseWinUI>true</UseWinUI>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\Modules\OOBE\FileExplorer.png" />
     <None Remove="Pages\AwakePage.xaml" />
     <None Remove="Pages\ColorPickerPage.xaml" />
     <None Remove="Pages\FancyZonesPage.xaml" />
     <None Remove="Pages\GeneralPage.xaml" />
     <None Remove="Pages\ImageResizerPage.xaml" />
     <None Remove="Pages\KeyboardManagerPage.xaml" />
+    <None Remove="Pages\OobePage.xaml" />
     <None Remove="Pages\PowerLauncherPage.xaml" />
     <None Remove="Pages\PowerPreviewPage.xaml" />
     <None Remove="Pages\PowerRenamePage.xaml" />
@@ -24,15 +26,18 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.3" />
-	  <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.3" />
-	  <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.3" />
-	  <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.4" />
+	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-preview2" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\SettingsUI\SettingsUI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\OobePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Controls;
 using System.ComponentModel;
 
@@ -45,6 +46,11 @@ namespace SettingsUI.Controls
         private void SetEnabledState()
         {
             VisualStateManager.GoToState(this, IsEnabled ? "Normal" : "Disabled", true);
+        }
+
+        protected override AutomationPeer OnCreateAutomationPeer()
+        {
+            return new SettingsGroupAutomationPeer(this);
         }
     }
 }

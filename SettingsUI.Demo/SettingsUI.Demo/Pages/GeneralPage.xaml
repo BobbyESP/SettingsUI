@@ -10,7 +10,6 @@
 
     <controls:SettingsPageControl
         ModuleDescription="Microsoft PowerToys is a set of utilities for power users to tune and streamline their Windows experience for greater productivity. Made with 💗 by Microsoft and the PowerToys community."
-        ModuleImageLink="https://aka.ms/powertoys"
         ModuleImageSource="ms-appx:///Assets/Modules/PT.png"
         ModuleTitle="General"
         SecondaryLinksHeader="Related information">
@@ -116,6 +115,15 @@
                         </controls:Setting.ActionContent>
                     </controls:Setting>
                 </controls:SettingsGroup>
+                <CheckBox Name="check" AutomationProperties.Name="{Binding ElementName=IncludeInGlobalResultTitle, Path=Text}" Margin="56, 0, 40, 16">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="IncludeInGlobalResultTitle" Margin="0,10,0,0" Text="Include in global result" />
+                        <controls:TextBlockControl IsEnabled="{Binding ElementName=check, Path=IsChecked}" Text="Show results on queries without direct activation command" 
+                                                                                   FontSize="{StaticResource SecondaryTextFontSize}" 
+                                                                                   EnabledForeground="{ThemeResource TextFillColorSecondaryBrush}" 
+                                                                                   DisabledForeground="{ThemeResource TextFillColorDisabledBrush}" />
+                    </StackPanel>
+                </CheckBox>
             </StackPanel>
         </controls:SettingsPageControl.ModuleContent>
         <controls:SettingsPageControl.PrimaryLinks>

@@ -1,6 +1,6 @@
-﻿using CommunityToolkit.WinUI.UI.Controls;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Controls;
 
 namespace SettingsUI.Controls
 {
@@ -22,6 +22,7 @@ namespace SettingsUI.Controls
                 {
                     Setting selfSetting = (Setting)self.Header;
                     selfSetting.Style = (Style)Application.Current.Resources["ExpanderHeaderSettingStyle"];
+
                     if (!string.IsNullOrEmpty(selfSetting.Header))
                     {
                         AutomationProperties.SetName(self, selfSetting.Header);

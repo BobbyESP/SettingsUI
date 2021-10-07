@@ -1,6 +1,28 @@
+<p align="center">
+    <img alt="IDE-version" src="https://img.shields.io/badge/IDE-vs2022-blue.svg"></img>
+    <a href="https://www.nuget.org/packages/SettingsUI">
+        <img alt="nuget-version" src="https://img.shields.io/nuget/v/SettingsUI.svg"></img>
+    </a> 
+    <a href="https://www.nuget.org/packages/SettingsUI">
+        <img alt="Nuget" src="https://img.shields.io/nuget/dt/SettingsUI"></img>
+    </a> 
+    
+</p>
+
+<br>
+<p align="center">
+	<b>🙌 Donate Bitcoin with <a href="https://link.trustwallet.com/send?coin=0&address=bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a">Trust</a>🙌</b><br>
+	<b>🙌 Donate ETH with <a href="https://link.trustwallet.com/send?coin=60&address=0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C">Trust</a>🙌</b><br><br>
+	<b>🙌 Bitcoin: bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a<br></b>
+	<b>🙌 ETH: 0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C</b>
+</p>
+<br>
+
 # SettingsUI
  
 SettingsUI Helps you create your own application settings page, like Windows 11 Settings
+
+> **_NOTE:_** SettingsUI is based on WindowsAppSDK 1.0.0-preview2
 
 After installing, add the following resource to app.xaml
 

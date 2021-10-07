@@ -35,7 +35,16 @@
                         <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsSettings.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-
+                
+                <NavigationViewItem
+                    Margin="0,0,12,0"
+                    helpers:NavHelper.NavigateTo="views:OobePage"
+                    Content="FileExplorer Preview">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/FluentIcons/FluentIconsFileExplorerPreview.png"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                
                 <NavigationViewItem
                     Margin="0,0,12,0"
                     helpers:NavHelper.NavigateTo="views:AwakePage"

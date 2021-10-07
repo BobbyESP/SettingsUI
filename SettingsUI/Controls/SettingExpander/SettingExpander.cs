@@ -22,6 +22,7 @@ namespace SettingsUI.Controls
                 {
                     Setting selfSetting = (Setting)self.Header;
                     selfSetting.Style = (Style)Application.Current.Resources["ExpanderHeaderSettingStyle"];
+
                     if (!string.IsNullOrEmpty(selfSetting.Header))
                     {
                         AutomationProperties.SetName(self, selfSetting.Header);

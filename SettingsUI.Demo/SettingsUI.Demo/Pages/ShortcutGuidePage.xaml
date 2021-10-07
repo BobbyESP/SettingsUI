@@ -23,6 +23,16 @@
                     </controls:Setting.ActionContent>
                 </controls:Setting>
 
+                <controls:KeyVisual IsTabStop="False"
+                                            AutomationProperties.AccessibilityView="Raw"
+                                            VisualType="SmallOutline"
+                                            VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                            Content="Ctrl+F5" />
+                <controls:ShortcutWithTextLabelControl x:Name="HotkeyMicVidControl" Text="to toggle both your microphone and video" />
+                <controls:ShortcutWithTextLabelControl x:Name="HotkeyMicControl" Text="to toggle your microphone" />
+                <controls:ShortcutWithTextLabelControl x:Name="HotkeyVidControl" Text="to toggle your microphone" />
+                <Button Content="Open Shortcut Dialog" Click="Button_Click"/>
                 <controls:SettingsGroup Header="Appearance &amp; behavior">
 
                     <controls:Setting Header="Choose a mode" Icon="&#xE771;">

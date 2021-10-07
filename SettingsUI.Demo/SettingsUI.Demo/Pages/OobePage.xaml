@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <controls:OOBEPageControl ModuleTitle="ModuleName"
+    <controls:OOBEPageControl ModuleTitle="FileExplorer Preview"
         ModuleImageSource="ms-appx:///Assets/Modules/OOBE/FileExplorer.png"
         ModuleDescription="These settings allow you to manage your Windows File Explorer custom preview handlers.">
         <controls:OOBEPageControl.ModuleContent>

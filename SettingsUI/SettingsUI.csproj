@@ -1,26 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
-		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-		<RootNamespace>SettingsUI</RootNamespace>
-		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
-		<UseWinUI>true</UseWinUI>
-		<Platforms>AnyCPU;x64;x86</Platforms>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-		<Description>Windows 11 settings page in WinUI 3 apps</Description>
-		<PackageProjectUrl>https://github.com/ghost1372/SettingsUI</PackageProjectUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/ghost1372/SettingsUI</RepositoryUrl>
-		<PackageTags>winui winui3 win11 xaml settings theme styles </PackageTags>
-		<PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageIcon>icon.png</PackageIcon>
-	</PropertyGroup>
-	<ItemGroup>
-		<None Include="..\icon.png" Pack="true" PackagePath="" />
-		<None Include="..\LICENSE" Pack="true" PackagePath="" />
-		<None Include="..\README.md" Pack="true" PackagePath="" />
-	</ItemGroup>
+  <PropertyGroup>
+	<TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
+	<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+	<RootNamespace>SettingsUI</RootNamespace>
+	<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+	<UseWinUI>true</UseWinUI>
+	<Platforms>AnyCPU;x64;x86</Platforms>
+	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	<Description>Windows 11 settings page in WinUI 3 apps</Description>
+	<PackageProjectUrl>https://github.com/ghost1372/SettingsUI</PackageProjectUrl>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<RepositoryUrl>https://github.com/ghost1372/SettingsUI</RepositoryUrl>
+	<PackageTags>winui winui3 win11 xaml settings theme styles </PackageTags>
+	<PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<PackageIcon>icon.png</PackageIcon>
+	<Version>$(VersionPrefix)</Version>
+  </PropertyGroup>
+  <ItemGroup>
+	<None Include="..\icon.png" Pack="true" PackagePath="" />
+	<None Include="..\LICENSE" Pack="true" PackagePath="" />
+	<None Include="..\README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
   <ItemGroup>
     <None Remove="Controls\KeyVisual\KeyVisual.xaml" />
     <None Remove="Controls\OOBEPageControl\OOBEPageControl.xaml" />
@@ -41,6 +42,7 @@
 
   <ItemGroup>
 	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-preview2" />
+	  <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.20348.19" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
 	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />
   </ItemGroup>

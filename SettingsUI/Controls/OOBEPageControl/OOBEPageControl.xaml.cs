@@ -8,6 +8,10 @@ namespace SettingsUI.Controls
         public OOBEPageControl()
         {
             this.InitializeComponent();
+            if (string.IsNullOrEmpty(ModuleImageSource))
+            {
+                ModuleImageSource = "ms-appx:///nothing.png";
+            }
         }
 
         public string ModuleTitle

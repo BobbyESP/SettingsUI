@@ -11,6 +11,10 @@ namespace SettingsUI.Controls
             this.InitializeComponent();
             PrimaryLinks = new ObservableCollection<PageLink>();
             SecondaryLinks = new ObservableCollection<PageLink>();
+            if (string.IsNullOrEmpty(ModuleImageSource))
+            {
+                ModuleImageSource = "ms-appx:///nothing.png";
+            }
         }
 
         public string ModuleTitle

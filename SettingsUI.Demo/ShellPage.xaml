@@ -27,6 +27,10 @@
                 <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent"/>
                 <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="Transparent"/>
             </NavigationView.Resources>
+
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox Name="autoSuggestBox" QueryIcon="Find" PlaceholderText="Search" TextChanged="OnControlsSearchBoxTextChanged" QuerySubmitted="OnControlsSearchBoxQuerySubmitted"/>
+            </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
                 <NavigationViewItem
                     Margin="0,0,12,0"

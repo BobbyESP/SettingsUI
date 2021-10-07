@@ -89,9 +89,9 @@ private void AutoSuggest_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextCh
 }
 ```
 
-### NavHelper
+### NavHelper and ShellViewModel
 
-Easily implement a `NavigationView`
+Easily implement a `NavigationView` with Back button and AutoSuggestBox
 
 ```
 <NavigationView
@@ -99,6 +99,9 @@ Easily implement a `NavigationView`
     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
     ItemInvoked="navigationView_ItemInvoked"
     SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
+    <NavigationView.AutoSuggestBox>
+        <AutoSuggestBox Name="autoSuggestBox" QueryIcon="Find" PlaceholderText="Search" TextChanged="OnControlsSearchBoxTextChanged" QuerySubmitted="OnControlsSearchBoxQuerySubmitted"/>
+    </NavigationView.AutoSuggestBox>
     <NavigationView.MenuItems>
         <NavigationViewItem
             Margin="0,0,12,0"
@@ -123,7 +126,7 @@ now create a new `ShellViewModel` and initialize it
 ```
 public ShellViewModel ViewModel { get; } = new ShellViewModel();
 
-ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
+ViewModel.Initialize(shellFrame, navigationView, autoSuggestBox, KeyboardAccelerators);
 ```
 
 add UserControl or Page `Loaded` event
@@ -137,6 +140,16 @@ private void UserControl_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs
 private void navigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 {
     ViewModel.OnItemInvoked(args);
+}
+
+private void OnControlsSearchBoxQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+{
+    ViewModel.OnAutoSuggestBoxQuerySubmitted(args);
+}
+
+private void OnControlsSearchBoxTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+{
+    ViewModel.OnAutoSuggestBoxTextChanged(args);
 }
 ```
 
@@ -154,6 +167,17 @@ if you have `Microsoft.Xaml.Behaviors.WinUI.Managed` nuget package, you can bind
     <i:Interaction.Behaviors>
         <ic:EventTriggerBehavior EventName="ItemInvoked">
             <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}"/>
+        </ic:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+</NavigationView>
+
+<AutoSuggestBox>
+    <i:Interaction.Behaviors>
+        <ic:EventTriggerBehavior EventName="TextChanged">
+            <ic:InvokeCommandAction Command="{x:Bind ViewModel.AutoSuggestBoxTextChangedCommand}"/>
+        </ic:EventTriggerBehavior>
+        <ic:EventTriggerBehavior EventName="QuerySubmitted">
+            <ic:InvokeCommandAction Command="{x:Bind ViewModel.AutoSuggestBoxQuerySubmittedCommand}"/>
         </ic:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 </NavigationView>

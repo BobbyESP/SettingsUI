@@ -11,7 +11,7 @@ namespace SettingsUI.Demo
         public ShellPage()
         {
             this.InitializeComponent();
-            ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
+            ViewModel.Initialize(shellFrame, navigationView, autoSuggestBox, KeyboardAccelerators);
             shellFrame.Navigate(typeof(GeneralPage));
         }
 
@@ -23,6 +23,16 @@ namespace SettingsUI.Demo
         private void navigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             ViewModel.OnItemInvoked(args);
+        }
+
+        private void OnControlsSearchBoxQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+           ViewModel.OnAutoSuggestBoxQuerySubmitted(args);
+        }
+
+        private void OnControlsSearchBoxTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            ViewModel.OnAutoSuggestBoxTextChanged(args);
         }
     }
 }

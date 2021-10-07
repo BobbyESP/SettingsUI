@@ -21,8 +21,11 @@ namespace SettingsUI.ViewModel
         private IList<KeyboardAccelerator> keyboardAccelerators;
         private NavigationView navigationView;
         private NavigationViewItem selected;
+        private AutoSuggestBox autoSuggestBox;
         private ICommand loadedCommand;
         private ICommand itemInvokedCommand;
+        private ICommand autoSuggestBoxTextChangedCommand;
+        private ICommand autoSuggestBoxQuerySubmittedCommand;
 
         public bool IsBackEnabled
         {
@@ -37,21 +40,40 @@ namespace SettingsUI.ViewModel
         }
 
         public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new RelayCommand(OnLoaded));
-
         public ICommand ItemInvokedCommand => itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+        public ICommand AutoSuggestBoxTextChangedCommand => autoSuggestBoxTextChangedCommand ?? (autoSuggestBoxTextChangedCommand = new RelayCommand<AutoSuggestBoxTextChangedEventArgs>(OnAutoSuggestBoxTextChanged));
+        public ICommand AutoSuggestBoxQuerySubmittedCommand => autoSuggestBoxQuerySubmittedCommand ?? (autoSuggestBoxQuerySubmittedCommand = new RelayCommand<AutoSuggestBoxQuerySubmittedEventArgs>(OnAutoSuggestBoxQuerySubmitted));
 
-        public ShellViewModel()
-        {
-        }
-
-        public void Initialize(Frame frame, NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
+        private void InternalInitialize(Frame frame, NavigationView navigationView)
         {
             this.navigationView = navigationView;
-            this.keyboardAccelerators = keyboardAccelerators;
             NavigationService.Frame = frame;
             NavigationService.NavigationFailed += Frame_NavigationFailed;
             NavigationService.Navigated += Frame_Navigated;
             this.navigationView.BackRequested += OnBackRequested;
+        }
+        public void Initialize(Frame frame, NavigationView navigationView)
+        {
+            InternalInitialize(frame, navigationView);
+        }
+
+        public void Initialize(Frame frame, NavigationView navigationView, AutoSuggestBox autoSuggestBox)
+        {
+            InternalInitialize(frame, navigationView);
+            this.autoSuggestBox = autoSuggestBox;
+        }
+
+        public void Initialize(Frame frame, NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
+        {
+            this.keyboardAccelerators = keyboardAccelerators;
+            InternalInitialize(frame, navigationView);
+        }
+
+        public void Initialize(Frame frame, NavigationView navigationView, AutoSuggestBox autoSuggestBox, IList<KeyboardAccelerator> keyboardAccelerators)
+        {
+            this.keyboardAccelerators = keyboardAccelerators;
+            this.autoSuggestBox = autoSuggestBox;
+            InternalInitialize(frame, navigationView);
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
@@ -115,6 +137,61 @@ namespace SettingsUI.ViewModel
         {
             var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
             return pageType == sourcePageType;
+        }
+
+        public void OnAutoSuggestBoxTextChanged(AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (autoSuggestBox == null)
+                throw new NullReferenceException("AutoSuggestBox is null, please initialize ShellViewModel with a AutoSuggestBox.");
+
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                var suggestions = new List<string>();
+                var history = navigationView.MenuItems.OfType<NavigationViewItem>().ToList();
+
+                var querySplit = autoSuggestBox.Text.Split(' ');
+                var matchingItems = history.Where(
+                    item =>
+                    {
+                        bool flag = true;
+                        foreach (string queryToken in querySplit)
+                        {
+                            if (item.Content.ToString().IndexOf(queryToken, StringComparison.CurrentCultureIgnoreCase) < 0)
+                            {
+                                flag = false;
+                            }
+
+                        }
+                        return flag;
+                    });
+
+                foreach (var item in matchingItems)
+                {
+                    suggestions.Add(item.Content.ToString());
+                }
+                if (suggestions.Count > 0)
+                {
+                    autoSuggestBox.ItemsSource = suggestions;
+                }
+                else
+                {
+                    autoSuggestBox.ItemsSource = new string[] { "No result found" };
+                }
+            }
+        }
+
+        public void OnAutoSuggestBoxQuerySubmitted(AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (args.ChosenSuggestion != null)
+            {
+                var item = args.ChosenSuggestion as string;
+                Selected = navigationView.MenuItems
+                            .OfType<NavigationViewItem>()
+                            .FirstOrDefault(menuItem => (string)menuItem.Content == item);
+
+                var pageType = Selected.GetValue(NavHelper.NavigateToProperty) as Type;
+                NavigationService.Navigate(pageType);
+            }
         }
     }
 }

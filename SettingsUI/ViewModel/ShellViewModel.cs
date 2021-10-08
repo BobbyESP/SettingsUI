@@ -20,6 +20,7 @@ namespace SettingsUI.ViewModel
         private bool isBackEnabled;
         private IList<KeyboardAccelerator> keyboardAccelerators;
         private NavigationView navigationView;
+        private Type settingType;
         private NavigationViewItem selected;
         private AutoSuggestBox autoSuggestBox;
         private ICommand loadedCommand;
@@ -56,21 +57,45 @@ namespace SettingsUI.ViewModel
         {
             InternalInitialize(frame, navigationView);
         }
-
+        public void Initialize(Frame frame, NavigationView navigationView, Type settingType)
+        {
+            this.settingType = settingType;
+            InternalInitialize(frame, navigationView);
+        }
         public void Initialize(Frame frame, NavigationView navigationView, AutoSuggestBox autoSuggestBox)
         {
             InternalInitialize(frame, navigationView);
             this.autoSuggestBox = autoSuggestBox;
         }
-
+        public void Initialize(Frame frame, NavigationView navigationView, Type settingType, AutoSuggestBox autoSuggestBox)
+        {
+            this.settingType = settingType;
+            this.autoSuggestBox = autoSuggestBox;
+            InternalInitialize(frame, navigationView);
+        }
         public void Initialize(Frame frame, NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
         {
             this.keyboardAccelerators = keyboardAccelerators;
             InternalInitialize(frame, navigationView);
         }
 
+        public void Initialize(Frame frame, NavigationView navigationView, Type settingType, IList<KeyboardAccelerator> keyboardAccelerators)
+        {
+            this.settingType = settingType;
+            this.keyboardAccelerators = keyboardAccelerators;
+            InternalInitialize(frame, navigationView);
+        }
+
         public void Initialize(Frame frame, NavigationView navigationView, AutoSuggestBox autoSuggestBox, IList<KeyboardAccelerator> keyboardAccelerators)
         {
+            this.keyboardAccelerators = keyboardAccelerators;
+            this.autoSuggestBox = autoSuggestBox;
+            InternalInitialize(frame, navigationView);
+        }
+
+        public void Initialize(Frame frame, NavigationView navigationView, Type settingType, AutoSuggestBox autoSuggestBox, IList<KeyboardAccelerator> keyboardAccelerators)
+        {
+            this.settingType = settingType;
             this.keyboardAccelerators = keyboardAccelerators;
             this.autoSuggestBox = autoSuggestBox;
             InternalInitialize(frame, navigationView);
@@ -108,11 +133,22 @@ namespace SettingsUI.ViewModel
 
         public void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
         {
-            var item = navigationView.MenuItems
+            if (args.IsSettingsInvoked == true && settingType != null)
+            {
+                NavigationService.Navigate(settingType);
+            }
+            else if (args.InvokedItemContainer != null)
+            {
+                var item = navigationView.MenuItems
                             .OfType<NavigationViewItem>()
-                            .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType);
+                            .FirstOrDefault(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
+
+                if (item!= null)
+                {
+                    var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
+                    NavigationService.Navigate(pageType);
+                }
+            }
         }
 
         private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
@@ -128,9 +164,16 @@ namespace SettingsUI.ViewModel
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             IsBackEnabled = NavigationService.CanGoBack;
-            Selected = navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
-                            .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
+            if (e.SourcePageType == settingType)
+            {
+                Selected = (NavigationViewItem)navigationView.SettingsItem;
+            }
+            else if (e.SourcePageType != null)
+            {
+                Selected = navigationView.MenuItems
+                    .OfType<NavigationViewItem>()
+                    .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
+            }
         }
 
         private static bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)

@@ -11,8 +11,10 @@ namespace SettingsUI.Demo
         public ShellPage()
         {
             this.InitializeComponent();
-            ViewModel.Initialize(shellFrame, navigationView, autoSuggestBox, KeyboardAccelerators);
-            shellFrame.Navigate(typeof(GeneralPage));
+            ViewModel.InitializeNavigation(shellFrame, navigationView)
+                .WithAutoSuggestBox(autoSuggestBox)
+                .WithKeyboardAccelerator(KeyboardAccelerators)
+                .WithDefaultPage(typeof(GeneralPage));
         }
 
         private void UserControl_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)

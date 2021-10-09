@@ -20,7 +20,8 @@ namespace SettingsUI.ViewModel
         private bool isBackEnabled;
         private IList<KeyboardAccelerator> keyboardAccelerators;
         private NavigationView navigationView;
-        private Type settingType;
+        private Type settingsPage;
+        private Type defaultPage;
         private NavigationViewItem selected;
         private AutoSuggestBox autoSuggestBox;
         private ICommand loadedCommand;
@@ -53,50 +54,6 @@ namespace SettingsUI.ViewModel
             NavigationService.Navigated += Frame_Navigated;
             this.navigationView.BackRequested += OnBackRequested;
         }
-        public void Initialize(Frame frame, NavigationView navigationView)
-        {
-            InternalInitialize(frame, navigationView);
-        }
-        public void Initialize(Frame frame, NavigationView navigationView, Type settingType)
-        {
-            this.settingType = settingType;
-            InternalInitialize(frame, navigationView);
-        }
-        public void Initialize(Frame frame, NavigationView navigationView, AutoSuggestBox autoSuggestBox)
-        {
-            InternalInitialize(frame, navigationView);
-            this.autoSuggestBox = autoSuggestBox;
-        }
-        public void Initialize(Frame frame, NavigationView navigationView, Type settingType, AutoSuggestBox autoSuggestBox)
-        {
-            this.settingType = settingType;
-            this.autoSuggestBox = autoSuggestBox;
-            InternalInitialize(frame, navigationView);
-        }
-        public void Initialize(Frame frame, NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
-        {
-            this.keyboardAccelerators = keyboardAccelerators;
-            InternalInitialize(frame, navigationView);
-        }
-        public void Initialize(Frame frame, NavigationView navigationView, Type settingType, IList<KeyboardAccelerator> keyboardAccelerators)
-        {
-            this.settingType = settingType;
-            this.keyboardAccelerators = keyboardAccelerators;
-            InternalInitialize(frame, navigationView);
-        }
-        public void Initialize(Frame frame, NavigationView navigationView, AutoSuggestBox autoSuggestBox, IList<KeyboardAccelerator> keyboardAccelerators)
-        {
-            this.keyboardAccelerators = keyboardAccelerators;
-            this.autoSuggestBox = autoSuggestBox;
-            InternalInitialize(frame, navigationView);
-        }
-        public void Initialize(Frame frame, NavigationView navigationView, Type settingType, AutoSuggestBox autoSuggestBox, IList<KeyboardAccelerator> keyboardAccelerators)
-        {
-            this.settingType = settingType;
-            this.keyboardAccelerators = keyboardAccelerators;
-            this.autoSuggestBox = autoSuggestBox;
-            InternalInitialize(frame, navigationView);
-        }
 
         /// <summary>
         /// Initialize ShellViewModel
@@ -104,7 +61,7 @@ namespace SettingsUI.ViewModel
         /// <param name="frame"></param>
         /// <param name="navigationView"></param>
         /// <returns></returns>
-        public ShellViewModel Builder(Frame frame, NavigationView navigationView)
+        public ShellViewModel InitializeNavigation(Frame frame, NavigationView navigationView)
         {
             InternalInitialize(frame, navigationView);
             return this;
@@ -113,11 +70,11 @@ namespace SettingsUI.ViewModel
         /// <summary>
         /// Setting Page for NavigationView Setting item
         /// </summary>
-        /// <param name="settingPage"></param>
+        /// <param name="settingsPage"></param>
         /// <returns></returns>
-        public ShellViewModel WithSettingPage(Type settingPage)
+        public ShellViewModel WithSettingsPage(Type settingsPage)
         {
-            this.settingType = settingPage;
+            this.settingsPage = settingsPage;
             return this;
         }
 
@@ -136,6 +93,12 @@ namespace SettingsUI.ViewModel
         public ShellViewModel WithKeyboardAccelerator(IList<KeyboardAccelerator> keyboardAccelerators)
         {
             this.keyboardAccelerators = keyboardAccelerators;
+            return this;
+        }
+
+        public ShellViewModel WithDefaultPage(Type defaultPage)
+        {
+            this.defaultPage = defaultPage;
             return this;
         }
 
@@ -167,13 +130,18 @@ namespace SettingsUI.ViewModel
                 keyboardAccelerators.Add(backKeyboardAccelerator);
             }
             await Task.CompletedTask.ConfigureAwait(false);
+
+            if (defaultPage != null)
+            {
+                NavigationService.Navigate(defaultPage);
+            }
         }
 
         public void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
         {
-            if (args.IsSettingsInvoked == true && settingType != null)
+            if (args.IsSettingsInvoked == true && settingsPage != null)
             {
-                NavigationService.Navigate(settingType);
+                NavigationService.Navigate(settingsPage);
             }
             else if (args.InvokedItemContainer != null)
             {
@@ -202,7 +170,7 @@ namespace SettingsUI.ViewModel
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             IsBackEnabled = NavigationService.CanGoBack;
-            if (e.SourcePageType == settingType)
+            if (e.SourcePageType == settingsPage)
             {
                 Selected = (NavigationViewItem)navigationView.SettingsItem;
             }

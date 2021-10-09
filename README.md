@@ -148,7 +148,11 @@ now create a new `ShellViewModel` and initialize it
 ```
 public ShellViewModel ViewModel { get; } = new ShellViewModel();
 
-ViewModel.Initialize(shellFrame, navigationView, autoSuggestBox, KeyboardAccelerators);
+ViewModel.InitializeNavigation(shellFrame, navigationView)
+                    .WithAutoSuggestBox(autoSuggestBox)
+                    .WithKeyboardAccelerator(KeyboardAccelerators)
+                    .WithDefaultPage(typeof(myPage))
+                    .WithSettingsPage(typeof(mySettingsPage));
 ```
 
 add UserControl or Page `Loaded` event

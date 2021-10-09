@@ -12,7 +12,6 @@
         <Thickness x:Key="InfoBarIconMargin">6,16,16,16</Thickness>
         <Thickness x:Key="InfoBarContentRootPadding">16,0,0,0</Thickness>
         
-        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}"/>
         <Style TargetType="ToggleSwitch" BasedOn="{StaticResource ToggleSwitchSettingStyle}"/>
         
         <converters:DoubleToVisibilityConverter x:Name="doubleToVisibilityConverter" GreaterThan="0" TrueValue="Visible" FalseValue="Collapsed" />

@@ -9,7 +9,7 @@
                 <ResourceDictionary Source="ms-appx:///SettingsUI/Themes/SettingsUI.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
-            <!-- Other app resources here -->
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSettingStyle}"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

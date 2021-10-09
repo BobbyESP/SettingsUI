@@ -3,7 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System.Collections.Generic;
 
-namespace SettingsUI.Tools.Helpers
+namespace SettingsUI.Helpers
 {
     public static class VisualHelper
     {

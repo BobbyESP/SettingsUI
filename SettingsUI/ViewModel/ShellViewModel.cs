@@ -98,22 +98,41 @@ namespace SettingsUI.ViewModel
             InternalInitialize(frame, navigationView);
         }
 
+        /// <summary>
+        /// Initialize ShellViewModel
+        /// </summary>
+        /// <param name="frame"></param>
+        /// <param name="navigationView"></param>
+        /// <returns></returns>
         public ShellViewModel Builder(Frame frame, NavigationView navigationView)
         {
             InternalInitialize(frame, navigationView);
             return this;
         }
+
+        /// <summary>
+        /// Setting Page for NavigationView Setting item
+        /// </summary>
+        /// <param name="settingPage"></param>
+        /// <returns></returns>
         public ShellViewModel WithSettingPage(Type settingPage)
         {
             this.settingType = settingPage;
             return this;
         }
+
         public ShellViewModel WithAutoSuggestBox(AutoSuggestBox autoSuggestBox)
         {
             this.autoSuggestBox = autoSuggestBox;
             return this;
         }
 
+        /// <summary>
+        /// Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
+        /// More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
+        /// </summary>
+        /// <param name="keyboardAccelerators"></param>
+        /// <returns></returns>
         public ShellViewModel WithKeyboardAccelerator(IList<KeyboardAccelerator> keyboardAccelerators)
         {
             this.keyboardAccelerators = keyboardAccelerators;

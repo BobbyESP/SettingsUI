@@ -78,27 +78,46 @@ namespace SettingsUI.ViewModel
             this.keyboardAccelerators = keyboardAccelerators;
             InternalInitialize(frame, navigationView);
         }
-
         public void Initialize(Frame frame, NavigationView navigationView, Type settingType, IList<KeyboardAccelerator> keyboardAccelerators)
         {
             this.settingType = settingType;
             this.keyboardAccelerators = keyboardAccelerators;
             InternalInitialize(frame, navigationView);
         }
-
         public void Initialize(Frame frame, NavigationView navigationView, AutoSuggestBox autoSuggestBox, IList<KeyboardAccelerator> keyboardAccelerators)
         {
             this.keyboardAccelerators = keyboardAccelerators;
             this.autoSuggestBox = autoSuggestBox;
             InternalInitialize(frame, navigationView);
         }
-
         public void Initialize(Frame frame, NavigationView navigationView, Type settingType, AutoSuggestBox autoSuggestBox, IList<KeyboardAccelerator> keyboardAccelerators)
         {
             this.settingType = settingType;
             this.keyboardAccelerators = keyboardAccelerators;
             this.autoSuggestBox = autoSuggestBox;
             InternalInitialize(frame, navigationView);
+        }
+
+        public ShellViewModel Builder(Frame frame, NavigationView navigationView)
+        {
+            InternalInitialize(frame, navigationView);
+            return this;
+        }
+        public ShellViewModel WithSettingPage(Type settingPage)
+        {
+            this.settingType = settingPage;
+            return this;
+        }
+        public ShellViewModel WithAutoSuggestBox(AutoSuggestBox autoSuggestBox)
+        {
+            this.autoSuggestBox = autoSuggestBox;
+            return this;
+        }
+
+        public ShellViewModel WithKeyboardAccelerator(IList<KeyboardAccelerator> keyboardAccelerators)
+        {
+            this.keyboardAccelerators = keyboardAccelerators;
+            return this;
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)

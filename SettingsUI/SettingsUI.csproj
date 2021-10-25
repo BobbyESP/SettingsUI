@@ -24,6 +24,7 @@
 	<None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Controls\IsEnabledTextBlock\IsEnabledTextBlock.xaml" />
     <None Remove="Controls\KeyVisual\KeyVisual.xaml" />
     <None Remove="Controls\OOBEPageControl\OOBEPageControl.xaml" />
     <None Remove="Controls\SettingsGroup\SettingsGroup.xaml" />
@@ -31,7 +32,6 @@
     <None Remove="Controls\Setting\Setting.xaml" />
     <None Remove="Controls\Shortcut\ShortcutDialogContentControl.xaml" />
     <None Remove="Controls\Shortcut\ShortcutWithTextLabelControl.xaml" />
-    <None Remove="Controls\TextBlockControl\TextBlockControl.xaml" />
     <None Remove="Styles\Button.xaml" />
     <None Remove="Styles\Common.xaml" />
     <None Remove="Styles\TextBlock.xaml" />
@@ -46,6 +46,12 @@
 	  <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.20348.19" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
 	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\IsEnabledTextBlock\IsEnabledTextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
@@ -116,12 +122,6 @@
 
   <ItemGroup>
     <Page Update="Controls\Setting\Setting.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Controls\TextBlockControl\TextBlockControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

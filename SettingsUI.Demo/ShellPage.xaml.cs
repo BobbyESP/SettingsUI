@@ -29,7 +29,7 @@ namespace SettingsUI.Demo
 
         private void OnControlsSearchBoxQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-           ViewModel.OnAutoSuggestBoxQuerySubmitted(args);
+            ViewModel.OnAutoSuggestBoxQuerySubmitted(args);
         }
 
         private void OnControlsSearchBoxTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

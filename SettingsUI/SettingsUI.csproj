@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	<TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
-	<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-	<RootNamespace>SettingsUI</RootNamespace>
-	<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
-	<UseWinUI>true</UseWinUI>
-	<Platforms>AnyCPU;x64;x86</Platforms>
+    <TargetFrameworks>net5.0-windows10.0.19041.0;net6.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>SettingsUI</RootNamespace>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+
 	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	<Description>Windows 11 settings page in WinUI 3 apps</Description>
 	<PackageProjectUrl>https://github.com/ghost1372/SettingsUI</PackageProjectUrl>
@@ -15,125 +15,65 @@
 	<PackageReleaseNotes>https://github.com/ghost1372/SettingsUI/releases</PackageReleaseNotes>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageIcon>icon.png</PackageIcon>
-	<Version>1.0.9</Version>
+	<Version>1.1.0</Version>
 	<Copyright>Copyright (c) 2021 Mahdi Hosseini</Copyright>
   </PropertyGroup>
-  <ItemGroup>
-	<None Include="..\icon.png" Pack="true" PackagePath="" />
-	<None Include="..\LICENSE" Pack="true" PackagePath="" />
-	<None Include="..\README.md" Pack="true" PackagePath="" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Controls\IsEnabledTextBlock\IsEnabledTextBlock.xaml" />
-    <None Remove="Controls\KeyVisual\KeyVisual.xaml" />
-    <None Remove="Controls\OOBEPageControl\OOBEPageControl.xaml" />
-    <None Remove="Controls\SettingsGroup\SettingsGroup.xaml" />
-    <None Remove="Controls\SettingsPageControl\SettingsPageControl.xaml" />
-    <None Remove="Controls\Setting\Setting.xaml" />
-    <None Remove="Controls\Shortcut\ShortcutDialogContentControl.xaml" />
-    <None Remove="Controls\Shortcut\ShortcutWithTextLabelControl.xaml" />
-    <None Remove="Styles\Button.xaml" />
-    <None Remove="Styles\Common.xaml" />
-    <None Remove="Styles\TextBlock.xaml" />
-    <None Remove="Themes\Colors.xaml" />
-    <None Remove="Themes\Generic.xaml" />
-    <None Remove="Themes\SettingsExpanderStyles.xaml" />
-    <None Remove="Themes\SettingsUI.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-preview3" />
-	  <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.20348.19" />
+      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
 	  <PackageReference Include="nucs.JsonSettings" Version="2.0.0-alpha7" />
 	  <PackageReference Include="nucs.JsonSettings.Autosave" Version="2.0.0-alpha7" />
   </ItemGroup>
-
+  <ItemGroup>
+	  <None Include="..\icon.png" Pack="true" PackagePath="" />
+	  <None Include="..\LICENSE" Pack="true" PackagePath="" />
+	  <None Include="..\README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\IsEnabledTextBlock\IsEnabledTextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Controls\Shortcut\ShortcutDialogContentControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
     <Page Update="Controls\KeyVisual\KeyVisual.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Common.xaml">
+    <Page Update="Controls\OOBEPageControl\OOBEPageControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Themes\SettingsUI.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Themes\SettingsExpanderStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Themes\Colors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\TextBlock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Styles\Button.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Controls\SettingsPageControl\SettingsPageControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
     <Page Update="Controls\SettingsGroup\SettingsGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
+    <Page Update="Controls\SettingsPageControl\SettingsPageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Controls\Setting\Setting.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
+    <Page Update="Controls\Shortcut\ShortcutDialogContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Controls\Shortcut\ShortcutWithTextLabelControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Controls\OOBEPageControl\OOBEPageControl.xaml">
+    <Page Update="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Styles\Common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Themes\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Themes\SettingsExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Themes\SettingsUI.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

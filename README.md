@@ -22,7 +22,12 @@
  
 SettingsUI Helps you create your own application settings page, like Windows 11 Settings
 
-> **_NOTE:_** SettingsUI is based on WindowsAppSDK 1.0.0-preview3
+> **_NOTE:_** SettingsUI is based on WindowsAppSDK 1.0.0
+
+## Install
+```
+Install-Package SettingsUI
+```
 
 After installing, add the following resource to app.xaml
 

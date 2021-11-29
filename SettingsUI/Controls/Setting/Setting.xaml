@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SettingsUI.Controls">
+
     <Style TargetType="controls:Setting">
         <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}"/>
         <Setter Property="Background" Value="{ThemeResource CardBackgroundBrush}" />
@@ -51,7 +52,7 @@
                           HorizontalAlignment="Center"
                           FontSize="20"
                           Margin="2,0,18,0"
-                          MaxWidth="26"
+                          MaxWidth="20"
                           AutomationProperties.AccessibilityView="Raw"
                           FontFamily="{ThemeResource SymbolThemeFontFamily}"
                           Foreground="{ThemeResource CardPrimaryForegroundBrush}"

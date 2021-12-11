@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SettingsUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Thickness x:Key="InfoBarIconMargin">6,16,16,16</Thickness>
         <Thickness x:Key="InfoBarContentRootPadding">16,0,0,0</Thickness>
@@ -64,7 +64,7 @@
                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                    TextWrapping="Wrap"/>
 
-                        <ItemsControl ItemsSource="{x:Bind PrimaryLinks}" IsTabStop="False" Margin="0,8,0,0">
+                        <ItemsControl x:Name="PrimaryLinksControl" ItemsSource="{x:Bind PrimaryLinks}" IsTabStop="False" Margin="0,8,0,0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="local:PageLink">
                                     <HyperlinkButton NavigateUri="{x:Bind Link}" Style="{StaticResource TextButtonStyle}">
